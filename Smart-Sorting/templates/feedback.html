@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartSorting Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .radio-group {
+      margin-top: 10px;
+    }
+
+    .thank-you {
+      display: none;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 6px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>SmartSorting Feedback Form</h2>
+    <form id="feedbackForm" action="/submit_feedback" method="POST" enctype="multipart/form-data" onsubmit="return showThankYouMessage();">
+      <label for="name">Your Name (optional):</label>
+      <input type="text" id="name" name="name" placeholder="John Doe">
+
+      <label for="email">Your Email (optional):</label>
+      <input type="email" id="email" name="email" placeholder="john@example.com">
+
+      <label>Was the prediction accurate?</label>
+      <div class="radio-group">
+        <input type="radio" id="yes" name="accurate" value="Yes" required>
+        <label for="yes">Yes</label>
+        <input type="radio" id="no" name="accurate" value="No">
+        <label for="no">No</label>
+      </div>
+
+      <label for="correct_label">If not, what was the correct label?</label>
+      <select name="correct_label" id="correct_label">
+        <option value="">-- Select Correct Label --</option>
+        <option value="Apple__Healthy">Apple__Healthy</option>
+        <option value="Apple__Rotten">Apple__Rotten</option>
+        <option value="Banana__Healthy">Banana__Healthy</option>
+        <option value="Banana__Rotten">Banana__Rotten</option>
+        <option value="Bellpepper__Healthy">Bellpepper__Healthy</option>
+        <option value="Bellpepper__Rotten">Bellpepper__Rotten</option>
+        <option value="Carrot__Healthy">Carrot__Healthy</option>
+        <option value="Carrot__Rotten">Carrot__Rotten</option>
+        <option value="Cucumber__Healthy">Cucumber__Healthy</option>
+        <option value="Cucumber__Rotten">Cucumber__Rotten</option>
+        <option value="Grape__Healthy">Grape__Healthy</option>
+        <option value="Grape__Rotten">Grape__Rotten</option>
+        <option value="Guava__Healthy">Guava__Healthy</option>
+        <option value="Guava__Rotten">Guava__Rotten</option>
+        <option value="Jujube__Healthy">Jujube__Healthy</option>
+        <option value="Jujube__Rotten">Jujube__Rotten</option>
+        <option value="Mango__Healthy">Mango__Healthy</option>
+        <option value="Mango__Rotten">Mango__Rotten</option>
+        <option value="Pomegranate__Healthy">Pomegranate__Healthy</option>
+        <option value="Pomegranate__Rotten">Pomegranate__Rotten</option>
+        <option value="Potato__Healthy">Potato__Healthy</option>
+        <option value="Potato__Rotten">Potato__Rotten</option>
+        <option value="Orange__Healthy">Orange__Healthy</option>
+        <option value="Orange__Rotten">Orange__Rotten</option>
+        <option value="Strawberry__Healthy">Strawberry__Healthy</option>
+        <option value="Strawberry__Rotten">Strawberry__Rotten</option>
+        <option value="Tomato__Healthy">Tomato__Healthy</option>
+        <option value="Tomato__Rotten">Tomato__Rotten</option> 
+      </select>
+      <label for="image">Upload the image again (optional):</label>
+      <input type="file" id="image" name="image">
+
+      <label for="comments">Additional Comments or Suggestions:</label>
+      <textarea id="comments" name="comments" rows="4" placeholder="Write your suggestions or issues..."></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+
+    <div class="thank-you" id="thankYouMessage">
+      ✅ Thank you for your feedback!
+    </div>
+  </div>
+
+  <script>
+    function showThankYouMessage() {
+      const form = document.getElementById('feedbackForm');
+      const message = document.getElementById('thankYouMessage');
+
+      
+      setTimeout(() => {
+        message.style.display = 'block';
+        form.reset();
+      }, 500);
+
+      return true; 
+    }
+  </script>
+</body>
+</html>

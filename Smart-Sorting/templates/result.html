@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction Result - Smart Sorting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 50px 20px;
+    }
+
+    .result-box, .feedback-form {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      margin: auto;
+      margin-top: 20px;
+      max-width: 600px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    img {
+      max-width: 300px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .status-good {
+      color: green;
+      font-weight: bold;
+    }
+
+    .status-bad {
+      color: red;
+      font-weight: bold;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    form label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .radio-group {
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    .radio-group label {
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Prediction Result Box -->
+  <div class="result-box">
+    <h2>🧠 Prediction Result</h2>
+    <p><strong>Predicted Class:</strong> {{ prediction }}</p>
+    <p><strong>Confidence:</strong> {{ confidence }}%</p>
+    <p class="{{ 'status-good' if 'Good' in result else 'status-bad' }}">
+      <strong>Result:</strong> {{ result }}
+    </p>
+    <img src="{{ url_for('static', filename='uploads/' + image_path) }}" alt="Uploaded Image">
+    <br>
+    <a href="/" class="btn">🔁 Predict Another</a>
+  </div>
+
+  <!-- Feedback Form Below -->
+  <div class="feedback-form">
+    <h2>📝 Feedback Form</h2>
+    <form action="/submit_feedback" method="POST">
+      <label for="name">Your Name (optional):</label>
+      <input type="text" id="name" name="name" placeholder="John Doe">
+
+      <label for="email">Your Email (optional):</label>
+      <input type="email" id="email" name="email" placeholder="john@example.com">
+
+      <label>Was the prediction accurate?</label>
+      <div class="radio-group">
+        <input type="radio" id="yes" name="accurate" value="Yes" required>
+        <label for="yes">Yes</label>
+        <input type="radio" id="no" name="accurate" value="No">
+        <label for="no">No</label>
+      </div>
+
+      <label for="correct_label">If not, what was the correct label?</label>
+      <select name="correct_label" id="correct_label">
+        <option value="">-- Select Correct Label --</option>
+        {% for class in [
+          'Apple__Healthy','Apple__Rotten','Banana__Healthy','Banana__Rotten',
+          'Bellpepper__Healthy','Bellpepper__Rotten','Carrot__Healthy','Carrot__Rotten',
+          'Cucumber__Healthy','Cucumber__Rotten','Grape__Healthy','Grape__Rotten',
+          'Guava__Healthy','Guava__Rotten','Jujube__Healthy','Jujube__Rotten',
+          'Mango__Healthy','Mango__Rotten','Pomegranate__Healthy','Pomegranate__Rotten',
+          'Potato__Healthy','Potato__Rotten','Orange__Healthy','Orange__Rotten',
+          'Strawberry__Healthy','Strawberry__Rotten','Tomato__Healthy','Tomato__Rotten'
+        ] %}
+        <option value="{{ class }}">{{ class }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="comments">Additional Comments or Suggestions:</label>
+      <textarea id="comments" name="comments" rows="4" placeholder="Write your suggestions or issues..."></textarea>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+</body>
+</html>

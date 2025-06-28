@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Sorting To Detect Rotten</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 40px;
+      position: relative;
+    }
+
+    section:not(:last-of-type) {
+      border-bottom: 10px solid #e0e0e0;
+    }
+
+    .next-button {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .next-button:hover {
+      background-color: #218838;
+    }
+
+    /* Slide 1 */
+    .slide-1 {
+      background: url('https://cdn.thewirecutter.com/wp-content/uploads/2020/05/producestorage-lowres-2x1-1141343601.jpg?width=2048&quality=75&crop=2:1&auto=webp') no-repeat center center/cover;
+      color: white;
+    }
+
+    .slide-1::before,
+    .slide-2::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .slide-1-content,
+    .slide-2-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Slide 2 */
+    .slide-2 {
+      background: url('https://www.dematic.com/content/dam/dematic/images/insights/case-studies/Netto-Picking_robot_15.jpg') no-repeat center center/cover;
+      color: white;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .slide-2-content {
+      max-width: 1000px;
+      text-align: left;
+      line-height: 1.7;
+      font-size: 18px;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+    }
+
+    .slide-2 h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    ul {
+      text-align: left;
+      margin-left: 20px;
+    }
+
+    /* Slide 3 */
+    .slide-3 {
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      flex-direction: column;
+    }
+
+    .upload-box {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .upload-box h1 {
+      color: #333;
+    }
+
+    input[type="file"] {
+      margin: 15px 0;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slide 1 -->
+  <section class="slide-1" id="slide-1">
+    <div class="slide-1-content">
+      <h1 style="font-size: 3em;">🍎 Welcome to Smart Sorting</h1>
+      <p style="font-size: 1.5em;">A smarter way to detect rotten produce</p>
+    </div>
+    <a href="#slide-2" class="next-button">Next ⬇</a>
+  </section>
+
+  <!-- Slide 2 -->
+  <section class="slide-2" id="slide-2">
+    <div class="slide-2-content">
+      <h2>🔬 Project: Smart Sorting</h2>
+      <p><strong>Smart Sorting</strong> is an AI-driven image classification system designed to detect whether fruits and vegetables are fresh or rotten using deep learning.</p>
+      <p>Sorting fruits and vegetables manually is time-consuming, inconsistent, and often inaccurate. Rotten items may go unnoticed, leading to customer dissatisfaction and increased waste. There is a growing need for an automated, scalable, and cost-effective solution that can reliably classify produce quality.</p>
+      <p>We propose a smart, deep learning-based solution that utilizes <strong>transfer learning</strong> with the <strong>VGG16</strong> architecture. By training on a labeled dataset of fresh and rotten produce across 28 categories, the model learns to differentiate between subtle patterns of decay, discoloration, and texture change.</p>
+
+      <!-- Hidden content -->
+      <div id="more-content" style="display: none; margin-top: 20px;">
+        <p>
+        Transfer learning allows us to leverage pre-trained models like <strong>VGG16</strong>, which have already learned powerful feature representations from millions of general images. Instead of training a model from scratch—which requires vast amounts of labeled data and computational resources—we fine-tune the last few layers of a pre-trained model on our smaller dataset of fruit and vegetable images.
+      </p>
+      <p>
+        This is especially useful in detecting rot or spoilage, where the visual differences (like subtle color changes, mold, or texture distortions) can be difficult to classify with traditional image processing. Transfer learning enables high accuracy even with limited training data, speeds up development, and improves generalization.
+      </p>
+      <p>
+        In short, transfer learning brings deep visual understanding to our model—without needing to reinvent the wheel.
+      </p>
+      </div>
+
+      <!-- Learn More button -->
+      <button class="next-button" style="bottom: 100px;" onclick="document.getElementById('more-content').style.display='block'; this.style.display='none';">
+        Learn More
+      </button>
+
+      <!-- Next Slide button -->
+      <a href="#slide-3" class="next-button">Next ⬇</a>
+    </div>
+  </section>
+
+  <!-- Slide 3 -->
+  <section class="slide-3" id="slide-3">
+    <div class="upload-box">
+      <h1>🍏 Smart Sorting</h1>
+      <form action="/predict" method="post" enctype="multipart/form-data">
+        <p><strong>Select a fruit or vegetable image</strong></p>
+        <input type="file" name="file" accept="image/*" required><br>
+        <button type="submit">Predict</button>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>
